@@ -12,14 +12,16 @@ object Api {
     private const val URL = "http://127.0.0.1:5000/api/v1/"
 
     interface Service {
-        @GET("/products")
-        suspend fun find(): List<Product>
+        @GET("products")
+        suspend fun findAll(): List<Product>
+
+
+        @GET("products/{id}")
+        suspend fun findOne(@Path("id") itemId: Int): Product;
 
     }
 
-    private val client: OkHttpClient = OkHttpClient.Builder().apply {
-
-    }.build()
+    private val client: OkHttpClient = OkHttpClient.Builder().build()
 
     private var gson = GsonBuilder()
         .setLenient()
