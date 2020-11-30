@@ -19,7 +19,7 @@ object Repo {
 
     }
 
-    suspend fun findOne(id: Int): Product{
+    suspend fun findOne(id: String): Product{
 
         val item = cachedItems?.find { it.id == id }
         if (item != null) {
@@ -29,11 +29,18 @@ object Repo {
 
     }
 
-    fun update(product: Product): Product? {
-        return null
+    suspend fun update(product: Product): Product? {
+        val updatedProduct: Product = Api.service.update(product)
+        val index = cachedItems?.indexOfFirst { it.id == product.id }
+        if (index != null) {
+            cachedItems?.set(index, updatedProduct)
+        }
+        return updatedProduct
     }
 
-    fun save(item: Product): Product? {
-        return null
+    suspend fun save(item: Product): Product? {
+        val createdItem = Api.service.create(item)
+        cachedItems?.add(createdItem)
+        return createdItem
     }
 }

@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 
 class ProductEditViewModel : ViewModel() {
-    private val mutableItem = MutableLiveData<Product>().apply { value = Product(0, "",0,0) }
+    private val mutableItem = MutableLiveData<Product>().apply { value = Product("0", "","0","0") }
     private val mutableFetching = MutableLiveData<Boolean>().apply { value = false }
     private val mutableCompleted = MutableLiveData<Boolean>().apply { value = false }
     private val mutableException = MutableLiveData<Exception>().apply { value = null }
@@ -21,7 +21,7 @@ class ProductEditViewModel : ViewModel() {
     val fetchingError: LiveData<Exception> = mutableException
     val completed: LiveData<Boolean> = mutableCompleted
 
-    fun loadItem(itemId: Int) {
+    fun loadItem(itemId: String) {
         viewModelScope.launch {
             mutableFetching.value = true
             mutableException.value = null
@@ -35,7 +35,7 @@ class ProductEditViewModel : ViewModel() {
         }
     }
 
-    fun saveOrUpdateItem(name: String, price: Int, stock: Int) {
+    fun saveOrUpdateItem(name: String, price: String, stock: String) {
         viewModelScope.launch {
             val item = mutableItem.value ?: return@launch
             item.name = name
@@ -44,7 +44,7 @@ class ProductEditViewModel : ViewModel() {
             mutableFetching.value = true
             mutableException.value = null
             try {
-                if (item.id != 0) {
+                if (item.id != "0") {
                     mutableItem.value = Repo.update(item)
                 } else {
                     mutableItem.value = Repo.save(item)

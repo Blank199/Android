@@ -9,7 +9,7 @@ import retrofit2.http.*
 
 
 object Api {
-    private const val URL = "http://127.0.0.1:5000/api/v1/"
+    private const val URL = "http://192.168.100.4:5000/api/v1/"
 
     interface Service {
         @GET("products")
@@ -17,8 +17,15 @@ object Api {
 
 
         @GET("products/{id}")
-        suspend fun findOne(@Path("id") itemId: Int): Product;
+        suspend fun findOne(@Path("id") itemId: String): Product;
 
+        @Headers("Content-Type: application/json")
+        @POST("product")
+        suspend fun create(@Body product: Product): Product
+
+        @Headers("Content-Type: application/json")
+        @PUT("product")
+        suspend fun update(@Body product: Product): Product
     }
 
     private val client: OkHttpClient = OkHttpClient.Builder().build()

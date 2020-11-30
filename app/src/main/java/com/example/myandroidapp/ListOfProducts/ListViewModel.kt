@@ -1,4 +1,3 @@
-package ro.ubbcluj.cs.ilazar.myapp2.todo.items
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -22,7 +21,7 @@ class ListViewModel : ViewModel() {
     fun createItem(position: Int): Unit {
         val list = mutableListOf<Product>()
         list.addAll(mutableItems.value!!)
-        list.add(Product(position, "Item " + position, 1, 1))
+        list.add(Product(position.toString(), "Item " + position, "1", "1"))
         mutableItems.value = list
     }
 

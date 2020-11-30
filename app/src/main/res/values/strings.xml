@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">MyAndroidApp</string>
+    <string name="app_name">My Basic Activity App</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="product_list_fragment_label">Product List</string>
+    <string name="product_edit_fragment_label">Product Edit</string>
+    <string name="edit">Edit</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="product_list_fragment">Product list fragment</string>
+    <string name="product_edit_fragment">Product edit fragment</string>
 </resources>
