@@ -19,6 +19,14 @@ object Repo {
 
     }
 
+    suspend fun size() : Int {
+        if(cachedItems != null) {
+            val list =  cachedItems as List<Product>;
+            return list.size;
+        }
+        return 1;
+    }
+
     suspend fun findOne(id: String): Product{
 
         val item = cachedItems?.find { it.id == id }

@@ -47,6 +47,7 @@ class ProductEditViewModel : ViewModel() {
                 if (item.id != "0") {
                     mutableItem.value = Repo.update(item)
                 } else {
+                    item.id = (Repo.size() + 1).toString();
                     mutableItem.value = Repo.save(item)
                 }
                 mutableCompleted.value = true

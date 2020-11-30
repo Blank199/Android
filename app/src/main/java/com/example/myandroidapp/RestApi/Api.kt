@@ -20,11 +20,11 @@ object Api {
         suspend fun findOne(@Path("id") itemId: String): Product;
 
         @Headers("Content-Type: application/json")
-        @POST("product")
+        @POST("products")
         suspend fun create(@Body product: Product): Product
 
         @Headers("Content-Type: application/json")
-        @PUT("product")
+        @PUT("products")
         suspend fun update(@Body product: Product): Product
     }
 
